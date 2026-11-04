@@ -11,7 +11,14 @@ const App = () => {
       </div>
       <div className=" grid grid-cols-4 gap-5  p-8 pl-15  ">
         {Array(12).fill(0).map((elem,idx)=>(
-          <div className="h-50 w-60 bg-white rounded-2xl"></div>
+          <div className="h-60 w-70  flex flex-col items-center">
+
+           <div className="h-50 w-60  rounded-2xl">
+            <img src="/images/myphoto.jpg" className="h-full rounded-2xl" alt="image not found" />
+            </div> 
+
+             <button className="py-0.5 px-2 bg-fuchsia-500 border-none rounded my-4 text-white active:scale-95">Download</button>
+          </div>
         ))
 
         }

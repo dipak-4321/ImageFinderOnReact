@@ -4,7 +4,28 @@ const API_KEY = "Ca49nGaAFttdh1w2mNS9-VE0-f2pK-7MP5CBNAvYqAc"
 
 const App = () => {
   const [photos, setPhotos] = useState([])
+  const fetchImage = async ()=>{
+        const response = await axios.get(
+        "https://api.unsplash.com/search/photos",
+        {
+          headers: {
+            Authorization: `Client-ID ${API_KEY}`
+          },
+          params: {
+            query: "girl",
+            page: 1,
+            per_page: 12
+          }
+        }
+      )
+    console.log(response);
+    setPhotos(response.data.results)
+    
+  }
 
+  useEffect(()=>{
+    fetchImage()
+  },[])
 
   return (
     <div className=" bg-gray-300 py-3">
@@ -16,11 +37,11 @@ const App = () => {
         </div>
       </div>
       <div className=" grid grid-cols-4 gap-5  p-8 pl-15  ">
-        {Array(12).fill(0).map((elem,idx)=>(
+        {photos.map((photo,idx)=>(
           <div className="h-60 w-70 my-2  flex flex-col items-center " key={idx}>
 
            <div className="h-50 w-60  rounded-2xl">
-            <img src="/images/myphoto.jpg" className="h-full rounded-2xl" alt="image not found" />
+            <img src={photo.urls.small} className="h-full rounded-2xl" alt="image not found" />
             </div > 
             <div className="my-3  ">
              <p className="font-medium capitalize text-center mb-3" >Dipak</p>

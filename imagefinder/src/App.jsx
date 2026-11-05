@@ -28,7 +28,7 @@ const App = () => {
   },[])
 
   return (
-    <div className=" bg-gray-300 py-3">
+    <div className=" bg-gray-300 py-3 ">
       <div className="flex flex-col items-center gap-15 ">
         <h1 className="text-4xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder</h1>
         <div className="mb-4">
@@ -36,15 +36,15 @@ const App = () => {
           <button className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
         </div>
       </div>
-      <div className=" grid grid-cols-4 gap-5  p-8 pl-15  ">
+      <div className=" grid grid-cols-4 gap-5  p-8 ">
         {photos.map((photo,idx)=>(
-          <div className="h-60 w-70 my-2  flex flex-col items-center " key={idx}>
+          <div className="h-90 w-70  flex flex-col items-center my-1" key={idx}>
 
-           <div className="h-50 w-60  rounded-2xl">
-            <img src={photo.urls.small} className="h-full rounded-2xl" alt="image not found" />
+           <div className="h-60 w-60  rounded-2xl ">
+            <img src={photo.urls.small} className="h-full w-full object-cover rounded-2xl "   alt={photo.alt_description}  key={photo.id} />
             </div > 
-            <div className="my-3  ">
-             <p className="font-medium capitalize text-center mb-3" >Dipak</p>
+            <div className="my-3 flex flex-col items-center  ">
+             <p className="font-medium text-2xl capitalize mb-3" >{photo.user.name}</p>
              <a target='#' className="py-1 px-3 bg-fuchsia-500 hover:bg-fuchsia-600 border-none rounded  text-white active:scale-95">Download</a>
              </div>
           </div>
@@ -53,7 +53,7 @@ const App = () => {
         }
       </div>
       <div className="text-center">
-      <button className=" px-7 py-1.5 bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-110 text-white font-medium rounded" >Load more</button>
+      <button className=" px-7 py-1.5 bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-110 text-white font-medium rounded " >Load more</button>
       </div>
     </div>
   )

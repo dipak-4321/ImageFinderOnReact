@@ -7,7 +7,7 @@ const API_KEY = "Ca49nGaAFttdh1w2mNS9-VE0-f2pK-7MP5CBNAvYqAc"
 const App = () => {
   const [photos, setPhotos] = useState([])
   const [userinput, setUserinput] = useState('girl')
-
+  const [q, setQ] = useState('girl')
   const [loader, setLoader] = useState(false)
   const fetchImage = async ()=>{
         try{
@@ -19,7 +19,7 @@ const App = () => {
             Authorization: `Client-ID ${API_KEY}`
           },
           params: {
-            query: 'girl',
+            query: q,
             page: 1,
             per_page: 12
           }
@@ -43,7 +43,7 @@ const App = () => {
 
   useEffect(()=>{
     fetchImage()
-  },[])
+  },[q])
 
   return (
     <div className=" bg-gray-300 py-3 min-h-screen ">
@@ -54,7 +54,9 @@ const App = () => {
           <input value={userinput} onChange={(e)=>{
             setUserInputValue(e.target.value)
           }} type="text" placeholder="Enter the Image name" className="outline-none bg-white rounded-l-sm px-2 h-10  w-[330px] text-fuchsia-600 "/>
-          <button  className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
+          <button onClick={()=>{
+            setQ(userinput)
+          }} className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
         </div>
       </div>
       <div className=" grid grid-cols-4 gap-5  p-8 ">

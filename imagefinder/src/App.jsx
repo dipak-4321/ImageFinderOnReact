@@ -9,6 +9,7 @@ const App = () => {
   const [userinput, setUserinput] = useState('girl')
   const [q, setQ] = useState('girl')
   const [loader, setLoader] = useState(false)
+  const [page,setPage] = useState(1)
   const fetchImage = async ()=>{
         try{
         setLoader(true)
@@ -20,13 +21,13 @@ const App = () => {
           },
           params: {
             query: q,
-            page: 1,
+            page: page,
             per_page: 12
           }
         }
       )
     console.log(response);
-    setPhotos(response.data.results)
+    setPhotos( [ ...photos,...response.data.results])
     }
     catch(error){
       console.log(error)
@@ -40,14 +41,17 @@ const App = () => {
   const setUserInputValue = (value)=>{
       setUserinput(value)
   }
-
+  const loadMore = ()=>{
+    setPage(page+1)
+    
+  }
   useEffect(()=>{
     fetchImage()
-  },[q])
+  },[q,page])
 
   return (
     <div className=" bg-gray-300 py-3 min-h-screen ">
-      {loader && <div className="h-screen w-full flex justify-center items-center"> <Helix size={50} color="blue" /> </div>}
+
       <div className="flex flex-col items-center gap-15 ">
         <h1 className="text-4xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder</h1>
         <div className="mb-4">
@@ -55,6 +59,7 @@ const App = () => {
             setUserInputValue(e.target.value)
           }} type="text" placeholder="Enter the Image name" className="outline-none bg-white rounded-l-sm px-2 h-10  w-[330px] text-fuchsia-600 "/>
           <button onClick={()=>{
+            
             setQ(userinput)
           }} className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
         </div>
@@ -74,10 +79,14 @@ const App = () => {
         ))
 
         }
+
       </div>
+            {loader && (<div className="h-screen w-full flex justify-center items-center"> <Helix size={50} color="blue" /> </div>)}
       
       <div className="text-center">
-      <button className=" px-7 py-1.5 bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-110 text-white font-medium rounded " >Load more</button>
+      <button className=" px-7 py-1.5 bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-110 text-white font-medium rounded " onClick={()=>{
+        loadMore()
+      }}>Load more</button>
       </div>
     </div>
   )

@@ -59,7 +59,7 @@ const App = () => {
             setUserInputValue(e.target.value)
           }} type="text" placeholder="Enter the Image name" className="outline-none bg-white rounded-l-sm px-2 h-10  w-[330px] text-fuchsia-600 "/>
           <button onClick={()=>{
-            
+            setPhotos([])
             setQ(userinput)
           }} className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
         </div>

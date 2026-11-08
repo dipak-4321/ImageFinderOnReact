@@ -53,20 +53,20 @@ const App = () => {
     <div className=" bg-gray-300 py-3 min-h-screen ">
 
       <div className="flex flex-col items-center gap-15 ">
-        <h1 className="text-4xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder - {userQuery}</h1>
+        <h1 className="md:text-4xl text-2xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder - {userQuery}</h1>
         <div className="mb-4">
           <input value={userinput} onChange={(e)=>{
             setUserInputValue(e.target.value)
-          }} type="text" placeholder="Enter the Image name" className="outline-none bg-white rounded-l-sm px-2 h-10  w-[330px] text-fuchsia-600 "/>
+          }} type="text" placeholder="Enter the Image name" className="outline-none bg-white rounded-l-sm px-2 h-10  md:w-[330px] w-50 text-fuchsia-600 "/>
           <button onClick={()=>{
             setPhotos([])
             setUserQwery(userinput.trim())
           }} className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
         </div>
       </div>
-      <div className=" grid grid-cols-4 gap-5  p-8 ">
+      <div className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 place-items-center p-8 ">
         {photos.map((photo,idx)=>(
-          <div className="h-90 w-70  flex flex-col items-center my-1" key={idx}>
+          <div className="h-90 w-70  flex flex-col items-center" key={idx}>
 
            <div className="h-60 w-60 hover:scale-110 hover:border-2 hover:border-fuchsia-500 hover:mb-2 rounded-2xl ">
             <img src={photo.urls.small} className="h-full w-full object-cover rounded-2xl "   alt={photo.alt_description}  key={photo.id} />

@@ -7,7 +7,7 @@ const API_KEY = "Ca49nGaAFttdh1w2mNS9-VE0-f2pK-7MP5CBNAvYqAc"
 const App = () => {
   const [photos, setPhotos] = useState([])
   const [userinput, setUserinput] = useState('girl')
-  const [q, setQ] = useState('girl')
+  const [userQuery, setUserQwery] = useState('girl')
   const [loader, setLoader] = useState(false)
   const [page,setPage] = useState(1)
   const fetchImage = async ()=>{
@@ -20,7 +20,7 @@ const App = () => {
             Authorization: `Client-ID ${API_KEY}`
           },
           params: {
-            query: q,
+            query: userQuery,
             page: page,
             per_page: 12
           }
@@ -47,20 +47,20 @@ const App = () => {
   }
   useEffect(()=>{
     fetchImage()
-  },[q,page])
+  },[userQuery,page])
 
   return (
     <div className=" bg-gray-300 py-3 min-h-screen ">
 
       <div className="flex flex-col items-center gap-15 ">
-        <h1 className="text-4xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder</h1>
+        <h1 className="text-4xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder - {userQuery}</h1>
         <div className="mb-4">
           <input value={userinput} onChange={(e)=>{
             setUserInputValue(e.target.value)
           }} type="text" placeholder="Enter the Image name" className="outline-none bg-white rounded-l-sm px-2 h-10  w-[330px] text-fuchsia-600 "/>
           <button onClick={()=>{
             setPhotos([])
-            setQ(userinput)
+            setUserQwery(userinput.trim())
           }} className="bg-fuchsia-500 hover:bg-fuchsia-600 active:scale-105 text-white px-3 rounded-r-sm h-10 w-[110px] font-bold">Search</button>
         </div>
       </div>

@@ -55,7 +55,13 @@ const App = () => {
       <div className="flex flex-col items-center gap-15 ">
         <h1 className="md:text-4xl text-2xl font-bold text-fuchsia-600 flex items-center  "><span className="mb-1.5 mr-1">📸 </span>  Image Finder - {userQuery}</h1>
         <div className="mb-4">
-          <input 
+          <input onKeyDown={(event)=>{
+             if(event.key === 'Enter'){
+              if(userQuery === userinput)return
+             setPhotos([])
+             setPage(1)
+             setUserQwery(userinput.trim())
+             }}}
              value={userinput} 
              onChange={(e)=>{
             setUserInputValue(e.target.value)
